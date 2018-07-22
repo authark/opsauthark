@@ -1,0 +1,7 @@
+- name: Install LXD
+  apt:
+    pkg: lxd
+    state: latest
+  register: lxdoutput
+  failed_when: false
+  no_log: true

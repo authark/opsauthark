@@ -1,0 +1,32 @@
+- name: Create LXD Container
+  become: false
+  lxd_container:
+    name: "{{ item.name }}"
+    state: started
+    source:
+      type: image
+      mode: pull
+      server: https://cloud-images.ubuntu.com/releases
+      protocol: simplestreams
+      alias: 16.04/amd64
+    profiles: ['default']
+    wait_for_ipv4_addresses: true
+    timeout: 600
+    devices:
+      root:
+        path: /
+        type: disk
+      home:
+        path: "{{ home_device_path }}"
+        source: "{{ home_device_source }}"
+        type: disk
+  with_items: "{{ containers }}"
+  register: containers_info
+
+- name: Register the hosts in the inventory
+  add_host:
+    name: "{{ item.item.name }}"
+    group: "{{ item.item.service }}"
+    ansible_host: "{{ item.item.remote }}:{{ item.item.name }}"
+  with_items:
+    "{{ containers_info.results }}"

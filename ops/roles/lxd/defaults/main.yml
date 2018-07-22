@@ -1,0 +1,7 @@
+containers:
+    - name: container
+      service: lxd_containers
+
+home_device_path: "/mnt/home"
+
+home_device_source: "/home"
