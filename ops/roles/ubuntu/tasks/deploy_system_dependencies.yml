@@ -1,0 +1,15 @@
+- name: Update Ubuntu
+  apt:
+    update_cache: yes
+
+- name: Install Git
+  apt:
+    name: git
+
+- name: Install Python PIP
+  apt:
+    name: python3-pip
+
+- name: Install Python Virtualenvwrapper
+  apt:
+    name: virtualenvwrapper
