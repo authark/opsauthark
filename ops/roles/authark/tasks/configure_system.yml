@@ -1,0 +1,37 @@
+- name: Create Authark System User
+  user:
+    name: "{{ authark_user }}"
+    home: "{{ authark_home }}"
+    system: yes
+
+- name: Create Configuration Directory
+  file:
+    path: "{{ authark_configuration_directory }}"
+    state: directory
+    owner: "{{ authark_user }}"
+    group: "{{ authark_user }}"
+    mode: 0775
+
+- name: Create Log Directory
+  file:
+    path: "{{ authark_log_directory }}"
+    state: directory
+    owner: authark
+    group: authark
+    mode: 0775
+
+- name: Create Data Directory
+  file:
+    path: "{{ authark_data_directory }}"
+    state: directory
+    owner: "{{ authark_user }}"
+    group: "{{ authark_user }}"
+    mode: 0775
+
+- name: Create Backup Directory
+  file:
+    path: "{{ authark_backup_directory }}"
+    state: directory
+    owner: "{{ authark_user }}"
+    group: "{{ authark_user }}"
+    mode: 0775

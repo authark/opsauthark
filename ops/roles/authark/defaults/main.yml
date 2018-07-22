@@ -1,0 +1,25 @@
+# System
+
+authark_user: authark
+
+authark_home: /opt/authark
+
+# Directories
+
+authark_configuration_directory: /etc/opt/authark
+
+authark_data_directory: /var/opt/authark/data
+
+authark_log_directory: /var/opt/authark/log
+
+authark_backup_directory: /var/opt/authark/backup
+
+# Repositories
+
+authark_url: "https://github.com/authark/authark.git"
+
+authark_repository: "{{ authark_home }}/authark"
+
+authark_env: "{{ authark_home }}/env"
+
+authark_requirements_path: "{{ authark_repository }}/requirements.txt"

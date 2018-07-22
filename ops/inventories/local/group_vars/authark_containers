@@ -1,2 +1,1 @@
 ansible_connection: lxd
-serproser_deployment_user: nubarkbot

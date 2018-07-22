@@ -1,0 +1,17 @@
+- name: Clone Authark Repository
+  git:
+    repo: "{{ authark_url }}"
+    dest: "{{ authark_repository }}"
+    depth: 1
+    recursive: yes
+    force: yes
+  become: true
+  become_user: "{{ authark_user }}"
+
+- name: Create Authark's Virtualenv and Install Packages
+  become: yes
+  become_user: "{{ authark_user }}"
+  pip:
+    requirements: "{{ authark_requirements_path }}"
+    virtualenv: "{{ authark_env }}"
+    virtualenv_python: "python3"
