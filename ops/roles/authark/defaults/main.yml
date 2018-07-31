@@ -23,3 +23,9 @@ authark_repository: "{{ authark_home }}/authark"
 authark_env: "{{ authark_home }}/env"
 
 authark_requirements_path: "{{ authark_repository }}/requirements.txt"
+
+# Configuration
+
+authark_configuration_path: "{{ authark_configuration_directory }}/config.json"
+
+authark_database_path: "{{ authark_data_directory }}/authark_data.json"

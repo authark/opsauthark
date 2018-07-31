@@ -1,2 +1,3 @@
 - import_tasks: configure_system.yml
 - import_tasks: deploy_repository.yml
+- import_tasks: deploy_config_files.yml
