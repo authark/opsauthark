@@ -1,0 +1,9 @@
+[Unit]
+Description=Authark Service
+
+[Service]
+User=authark
+Group=authark
+WorkingDirectory=/opt/authark/authark
+ExecStart=/opt/authark/env/bin/python -m authark
+Restart=on-failure

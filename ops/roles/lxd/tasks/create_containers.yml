@@ -16,6 +16,7 @@
       root:
         path: /
         type: disk
+        pool: default
       home:
         path: "{{ home_device_path }}"
         source: "{{ home_device_source }}"
@@ -29,4 +30,13 @@
     group: "{{ item.item.service }}"
     ansible_host: "{{ item.item.remote }}:{{ item.item.name }}"
   with_items:
-    "{{ containers_info.results }}"
+    - "{{ containers_info.results }}"
+  when: remote == true
+
+- name: Register the hosts in the inventory
+  add_host:
+    name: "{{ item.item.name }}"
+    group: "{{ item.item.service }}"
+  with_items:
+    - "{{ containers_info.results }}"
+  when: remote == false

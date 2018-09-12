@@ -1,0 +1,39 @@
+upstream authark_server {
+    server 0.0.0.0 weight=1 fail_timeout=0;
+}
+
+server {
+    listen 80;
+
+    # Sendfile
+    sendfile           on;
+    sendfile_max_chunk 1m;
+    tcp_nopush on;
+
+    # Specifies the maximum accepted body size of a client request,
+    # as indicated by the request header Content-Length.
+    client_max_body_size 1000m;
+    client_body_timeout 6000;
+
+    # Increase proxy timeouts to prevent 504 Gateway Time-Out
+    proxy_connect_timeout 6000;
+    proxy_send_timeout 6000;
+    proxy_read_timeout 6000;
+    send_timeout 6000;
+
+    # Increase proxy buffer to handle some Odoo web requests
+    proxy_buffers 16 64k;
+    proxy_buffer_size 128k;
+
+    # Log
+    error_log  /var/opt/authark/log/nginx_error.log  warn;
+
+    location / {
+        proxy_set_header HOST $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_pass http://authark_server;
+    }
+}

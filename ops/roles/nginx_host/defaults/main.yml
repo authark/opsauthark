@@ -1,0 +1,13 @@
+nginx_path: /etc/nginx
+
+# Authark's Port
+
+authark_default_port: 8080
+
+# Nginx Directories
+
+nginx_available_directory: "{{ nginx_path }}/sites-available"
+nginx_enabled_directory: "{{ nginx_path }}/sites-enabled"
+hosts_directory: /etc
+
+server_domain: none

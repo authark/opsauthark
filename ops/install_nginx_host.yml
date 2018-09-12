@@ -1,0 +1,4 @@
+- hosts: lxd_hosts
+  roles:
+    - nginx
+    - nginx_host

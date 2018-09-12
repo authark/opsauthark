@@ -1,0 +1,4 @@
+[lxd_hosts]
+00.00.00.00 ansible_user=root
+
+[authark_containers]
