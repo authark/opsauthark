@@ -1,0 +1,27 @@
+- name: Copy Config Nginx authark File [HOST]
+  become: yes
+  template:
+    src: nginx_host.j2
+    dest: "{{ nginx_available_directory }}/authark"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create Symlinks for Nginx authark's Configuration [HOST]
+  become: yes
+  file:
+    src: "{{ nginx_available_directory }}/authark"
+    dest: "{{ nginx_enabled_directory }}/authark"
+    state: link
+  
+- name: Delete Default Nginx File
+  become: yes
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+    
+- name: Restart Nginx Service
+  systemd:
+    name: nginx
+    state: restarted
+  become: yes

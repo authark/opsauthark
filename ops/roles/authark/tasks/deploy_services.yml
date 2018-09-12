@@ -1,0 +1,15 @@
+
+- name: Deploy Authark Systemd Service File
+  template:
+    src: authark.service.j2
+    dest: /etc/systemd/system/authark.service
+    mode: 0755
+
+# Start Services
+
+- name: Restart Authark Service
+  systemd:
+    name: authark
+    enabled: true
+    state: restarted
+    daemon_reload: true

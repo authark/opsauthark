@@ -1,0 +1,20 @@
+- name: Deploy Authark's Nginx Configuration File
+  template:
+    src: authark.j2
+    dest: /etc/nginx/sites-available/authark
+
+- name: Symlink Authark Nginx File
+  file:
+    src: /etc/nginx/sites-available/authark
+    dest: /etc/nginx/sites-enabled/authark
+    state: link
+
+- name: Delete Default Nginx File
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Restart Nginx Service
+  systemd:
+    name: nginx
+    state: restarted
