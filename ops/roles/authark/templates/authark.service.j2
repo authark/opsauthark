@@ -2,8 +2,9 @@
 Description=Authark Service
 
 [Service]
+Environment=AUTHARK_CONFIG={{authark_configuration_path}}
 User=authark
 Group=authark
 WorkingDirectory=/opt/authark/authark
-ExecStart=/opt/authark/env/bin/python -m authark
+ExecStart=/opt/authark/env/bin/python -m authark serve
 Restart=on-failure
