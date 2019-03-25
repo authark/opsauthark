@@ -3,6 +3,7 @@
     name: "{{ authark_user }}"
     home: "{{ authark_home }}"
     system: yes
+    shell: /bin/bash
 
 - name: Create Configuration Directory
   file:
